@@ -271,22 +271,17 @@ arrows) */
 /* CSS code for the slideshow */
 
   
-  .mySlides {
-    display: none;
-  }
-  
-  .slideshow-img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .button-container {
-    text-align: center;
+.button-container {
+    position: relative;
     margin-top: 10px;
+    text-align: center;
   }
   
   .prev,
   .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: inline-block;
     padding: 8px 16px;
     background-color: #f1f1f1;
@@ -298,12 +293,19 @@ arrows) */
     cursor: pointer;
   }
   
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
   .prev:hover,
   .next:hover {
     background-color: #ddd;
     color: #555;
   }
-
 /* Modal styles */
 .modal {
     display: none;
