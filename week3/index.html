@@ -59,40 +59,40 @@
         <div class="slideshow-container">
 
           <div class="mySlides" style= " display: inline-block;">
-            <img src="images/Flights.png" alt="img" class = "slideshow-img">1/8
+            <img src="images/c1.jpg" alt="img" class = "slideshow-img">1/8
 
           </div>
 
           <div class="mySlides">
-            <img src="images/ladies facial.png" alt="img" class = "slideshow-img">2/8
+            <img src="images/c2.jpg" alt="img" class = "slideshow-img">2/8
 
           </div>
 
           <div class="mySlides">
-            <img src="images/tour packages.png" alt="img" class = "slideshow-img">3/8
+            <img src="images/c3.jpg" alt="img" class = "slideshow-img">3/8
 
           </div>
 
           <div class="mySlides">
-            <img src="images/reservation.png" alt="img" class = "slideshow-img">>4/8
+            <img src="images/c4.jpg" alt="img" class = "slideshow-img">4/8
 
           </div>
           <div class="mySlides">
-            <img src="images/Flights.png" alt="img" class = "slideshow-img">>5/8
+            <img src="images/c5.jpg" alt="img" class = "slideshow-img">5/8
 </div>
 
           <div class="mySlides">
-            <img src="images/ladies facial.png" alt="img" class = "slideshow-img">>6/8
+            <img src="images/c6.jpg" alt="img" class = "slideshow-img">6/8
 
           </div>
 
           <div class="mySlides">
-            <img src="images/tour packages.png" alt="img" class = "slideshow-img">7/8
+            <img src="images/c7.jpg" alt="img" class = "slideshow-img">7/8
 
           </div>
 
           <div class="mySlides">
-            <img src="images/reservation.png" alt="img" class = "slideshow-img">8/8
+            <img src="images/c8.jpg" alt="img" class = "slideshow-img">8/8
 
           </div>
 
@@ -113,7 +113,7 @@
       <section class="cta-container">
         <h2>Ready to Experience Our Services?</h2>
         <p>Join us today and discover the difference we can make for you!</p>
-        <a href="contact.html" class="cta-button">Contact Us Now</a>
+        <a href="#" class="cta-button" onclick="openModal()">Contact Us Now</a>
       </section>
 
     </main>
@@ -128,27 +128,64 @@
       <p>&copy; 2024 Wanderlust Voyages | Travel Agency. All rights reserved.</p>
     </footer>
   </div>
-
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modal-form"></div>
+    </div>
+  </div>
   <script>
     window.onscroll = function() {myFunction()};
     var header = document.querySelector('header');
     var sticky = header.offsetTop;
     function myFunction() {
+      //checks if the page's header offst position is lower than scroll position
     if (window.pageYOffset > sticky){
-      header.classList.add("sticky");
+      header.classList.add("sticky"); //applies sticky class to the header 
     }
     else {
-     header.classList.remove("sticky");
+     header.classList.remove("sticky"); //if the offset is not lower than scroll position then the stick class is removed
     }
-    } 
+    }
+    
+    //initial starting point for the slide cursor 
     let cursor = 0;
-    function Slides(X){
+    function Slides(X){ // the function takes in X which is teh index of the slide collection
   var slides = document.getElementsByClassName("mySlides");
-  slides[cursor].style.display = "none";
-  cursor = (cursor + X + slides.length) % slides.length;
-  slides[cursor].style.display = "inline-block";
+  slides[cursor].style.display = "none"; //hides the current slide
+  cursor = (cursor + X + slides.length) % slides.length; //the cursor position is updated depending on the current slide being displayed 
+  // the cursor  position is made to be in the range of the length of the slide even if the current x becomes negative and %slides helps wrap around to the first slide
+  slides[cursor].style.display = "inline-block"; //displays the next slide
     }
-    Slides(0);
+    Slides(0); //initializing the slide variable for displaying the first slide
+
+    function openModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block"; //displays the modal 
+
+  fetch("forms/form.html") //fetches the form page
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (html) {
+      var modalForm = document.getElementById("modal-form");
+      //modalForm.innerHTML = html;
+    });
+}
+window.onload = function () {
+  var modal = document.getElementById("myModal");
+  var closeButtn = document.getElementsByClassName("modal-close")[0]; 
+
+  closeButtn.onclick = function () { //hiding the pop up on clicking the close button 
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none"; //hiding the pop up if the user clicks outslde the pop up window 
+    }
+  };
+};
   
   </script>
 </body>
