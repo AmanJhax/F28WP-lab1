@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wanderlust Voyages | Travel Agency</title>
   <link rel="stylesheet" href="style.css">
+
+
 </head>
 
 <body>
@@ -30,7 +32,7 @@
 
     <!-- Banner Section -->
     <section class="banner-container">
-      <img src="images/travel banner.svg" alt="Illustrative banner of travel destinations" class="centered-banner">
+      <img name ="slide" src="images/travel banner.svg" alt="Illustrative banner of travel destinations" class="centered-banner" loading = "lazy">
     </section>
 
     <!-- Main Content Section -->
@@ -49,34 +51,55 @@
 
       <!-- Our Services -->
       <section>
+        <div class="button-container">
+          <a class="prev" onclick="Slides(-1)">&lt;</a>
+          <a class="next" onclick="Slides(1)">&gt;</a>
+        </div>
         <h2>Our Services</h2>
-        <div class="services-container">
+        <div class="slideshow-container">
 
-          <div class="service-column">
-            <img src="images/Flights.png" alt="Illustration representing flight bookings">
-            <h3>Flight and Transport Bookings</h3>
-            <p>One of the primary services offered by travel agencies is the reservation of flights.</p>
+          <div class="mySlides" style= " display: inline-block;">
+            <img src="images/Flights.png" alt="img" class = "slideshow-img">1/8
+
           </div>
 
-          <div class="service-column">
-            <img src="images/ladies facial.png" alt="Illustration of a hotel">
-            <h3>Accommodation Reservations</h3>
-            <p>Travel agencies have partnerships and affiliations with a wide range of hotels.</p>
+          <div class="mySlides">
+            <img src="images/ladies facial.png" alt="img" class = "slideshow-img">2/8
+
           </div>
 
-          <div class="service-column">
-            <img src="images/tour packages.png" alt="Illustration representing tour packages">
-            <h3>Itinerary Planning and Tour Packages</h3>
-            <p>Travel agencies offer customized and pre-packaged tours to suit the preferences of travelers.</p>
+          <div class="mySlides">
+            <img src="images/tour packages.png" alt="img" class = "slideshow-img">3/8
+
           </div>
 
-          <div class="service-column">
-            <img src="images/reservation.png" alt="Illustration representing activities and excursions">
-            <h3>Activity & Excursion Bookings</h3>
-            <p>We curate and book a diverse range of local activities and excursions for unforgettable experiences.</p>
+          <div class="mySlides">
+            <img src="images/reservation.png" alt="img" class = "slideshow-img">>4/8
+
           </div>
+          <div class="mySlides">
+            <img src="images/Flights.png" alt="img" class = "slideshow-img">>5/8
+</div>
+
+          <div class="mySlides">
+            <img src="images/ladies facial.png" alt="img" class = "slideshow-img">>6/8
+
+          </div>
+
+          <div class="mySlides">
+            <img src="images/tour packages.png" alt="img" class = "slideshow-img">7/8
+
+          </div>
+
+          <div class="mySlides">
+            <img src="images/reservation.png" alt="img" class = "slideshow-img">8/8
+
+          </div>
+
+
 
         </div>
+
       </section>
 
       <!-- Pricing Section -->
@@ -85,10 +108,11 @@
         <p>Please contact us for pricing information on our services.</p>
       </section>
 
+
       <!-- Call to Action -->
       <section class="cta-container">
-        <h2 id = "Title">Ready to Experience Our Services?</h2>
-        <p id="desc">Join us today and discover the difference we can make for you!</p>
+        <h2>Ready to Experience Our Services?</h2>
+        <p>Join us today and discover the difference we can make for you!</p>
         <a href="contact.html" class="cta-button">Contact Us Now</a>
       </section>
 
@@ -104,5 +128,28 @@
       <p>&copy; 2024 Wanderlust Voyages | Travel Agency. All rights reserved.</p>
     </footer>
   </div>
+
+  <script>
+    window.onscroll = function() {myFunction()};
+    var header = document.querySelector('header');
+    var sticky = header.offsetTop;
+    function myFunction() {
+    if (window.pageYOffset > sticky){
+      header.classList.add("sticky");
+    }
+    else {
+     header.classList.remove("sticky");
+    }
+    } 
+    let cursor = 0;
+    function Slides(X){
+  var slides = document.getElementsByClassName("mySlides");
+  slides[cursor].style.display = "none";
+  cursor = (cursor + X + slides.length) % slides.length;
+  slides[cursor].style.display = "inline-block";
+    }
+    Slides(0);
+  
+  </script>
 </body>
 </html>
